@@ -1,0 +1,18 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/global-settings-schema.json",
+    "pacOwnerId": "tests-EPAC-MySub",
+    "telemetryOptOut": true,
+    "pacEnvironments": [
+        {
+            "pacSelector": "test-fx-my-sub",
+            "cloud": "AzureCloud",
+            "tenantId": "219647b6-1ea6-409d-b9cc-0893cb535884",
+            "deploymentRootScope": "/subscriptions/d74e6e64-8eb6-422d-a3a5-22d05df50c75",
+            "desiredState": {
+                "strategy": "ownedOnly",                // if full was used would delete anything not in EPAC
+                "keepDfcSecurityAssignments": true      // redundant with above, I believe
+            },
+            "managedIdentityLocation": "canadacentral"
+        }
+    ]
+}

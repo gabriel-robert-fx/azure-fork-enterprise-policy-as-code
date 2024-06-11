@@ -1,0 +1,263 @@
+{
+    "name": "globalmonitoring-dine-diag-to-laws",    // copied from the similar CAE Security Initiative with appropriate changes 
+    "properties": {
+        "displayName": "globalmonitoring - Initiative to deploy diagnostic settings for log analytics",
+        "description": "This initiative contains the policies required for the global monitoring project to send logs and or metrics to Log Analytics workspace",
+        "metadata": {
+            "category": "Monitoring"
+        },
+        "parameters": {
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                },
+                "allowedValues": [
+                    "DeployIfNotExists",
+                    "Disabled"
+                ],
+                "defaultValue": "DeployIfNotExists"
+            },
+            "logAnalytics": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Log Analytics workspace",
+                    "description": "Select the Log Analytics workspace from dropdown list",
+                    "strongType": "omsWorkspace",
+                    "assignPermissions": true
+                }
+            }
+        },
+        "policyDefinitions": [
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-ApplicationGateway",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-ApplicationGateway",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-DataCollectionRule",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-DataCollectionRule",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-DataExplorerCluster",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-DataExplorerCluster",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-EventHubNamespace",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-EventHubNamespace",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-Firewall",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-Firewall",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-Grafana",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-Grafana",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-KeyVault",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-KeyVault",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-LoadBalancer",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-LoadBalancer",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-LogAnalytics",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-LogAnalytics",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-NetworkSecurityGroups",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-NetworkSecurityGroups",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-NIC",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-NIC",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-PublicIP",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-PublicIP",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-RecoveryServiceVault",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-RecoveryServiceVault",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-SQL",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-SQL",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-StorageAccountsAllServices",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-StorageAccountsAllServices",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-VirtualNetwork",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-VirtualNetwork",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-VNetGW",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-VNetGW",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-WebServerFarm",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-WebServerFarm",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-Deploy-Diagnostics-Website",
+                "policyDefinitionName": "globalmonitoring-Deploy-Diagnostics-Website",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            }
+        ]
+    }
+}
