@@ -1,0 +1,127 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-set-definition-schema.json",
+    "name": "globalmonitoring-initiative-ama-arc",
+    "properties": {
+        "displayName": "globalmonitoring-initiative-ama-arc",
+        "policyType": "Custom",
+        "description": "Enable Azure Monitor for the hybrid virtual machines with AMA.",
+        "metadata": {
+            "version": "1.0.0",
+            "category": "Monitoring"
+        },
+        "parameters": {
+            "enableProcessesAndDependencies": {
+                "type": "Boolean",
+                "metadata": {
+                    "displayName": "Enable Processes and Dependencies",
+                    "description": "This is the flag for enabling processes and dependencies data collection in VMInsights"
+                },
+                "allowedValues": [
+                    true,
+                    false
+                ],
+                "defaultValue": false
+            },
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect for all constituent policies",
+                    "description": "Enable or disable the execution of each of the constituent policies in the initiative."
+                },
+                "allowedValues": [
+                    "DeployIfNotExists",
+                    "Disabled"
+                ],
+                "defaultValue": "DeployIfNotExists"
+            },
+            "dcrResourceId": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "VMI Data Collection Rule Resource Id",
+                    "description": "VMI Data Collection Rule Resource Id. Please refer to this link for newer experience migration: https://aka.ms/vminsights-dcrOnboarding",
+                    "portalReview": "true"
+                }
+            },
+            "insightsDcrResourceId": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "VMI Data Collection Rule Resource Id",
+                    "description": "VMI Data Collection Rule Resource Id. Please refer to this link for newer experience migration: https://aka.ms/vminsights-dcrOnboarding",
+                    "portalReview": "true"
+                }
+            }        
+        },
+        "policyDefinitions": [
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-AzureMonitorAgent_Windows_HybridVM_Deploy",
+                "policyDefinitionName": "globalmonitoring-AzureMonitorAgent_Windows_HybridVM_Deploy",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-AzureMonitorAgent_Linux_HybridVM_Deploy",
+                "policyDefinitionName": "globalmonitoring-AzureMonitorAgent_Linux_HybridVM_Deploy",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DependencyAgent_AMA_Windows_HybridVM",
+                "policyDefinitionName": "globalmonitoring-DependencyAgent_AMA_Windows_HybridVM",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "enableProcessesAndDependencies": {
+                        "value": "[parameters('enableProcessesAndDependencies')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DependencyAgent_AMA_Linux_HybridVM",
+                "policyDefinitionName": "globalmonitoring-DependencyAgent_AMA_Linux_HybridVM",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "enableProcessesAndDependencies": {
+                        "value": "[parameters('enableProcessesAndDependencies')]"
+                    }
+                }
+            },
+            {
+//              "policyDefinitionReferenceId": "DataCollectionRuleAssociation_Linux",
+//              "policyDefinitionName": "2ea82cdd-f2e8-4500-af75-67a2e084ca74",
+                "policyDefinitionReferenceId": "globalmonitoring-associateDataCollectionRuleLinuxWithUAI",
+                "policyDefinitionName": "globalmonitoring-associateDataCollectionRuleLinuxWithUAI",
+                "parameters": {
+                    "dcrResourceId": {
+                        "value": "[parameters('dcrResourceId')]"
+                    },
+                    "insightsDcrResourceId": {
+                        "value": "[parameters('insightsDcrResourceId')]"
+                    }               
+                 }
+            },
+            {
+//                "policyDefinitionReferenceId": "DataCollectionRuleAssociation_Windows",
+//                "policyDefinitionName": "eab1f514-22e3-42e3-9a1f-e1dc9199355c",
+                "policyDefinitionReferenceId": "globalmonitoring-associateDataCollectionRuleWindowsWithUAI",
+                "policyDefinitionName": "globalmonitoring-associateDataCollectionRuleWindowsWithUAI",
+                "parameters": {
+                    "dcrResourceId": {
+                        "value": "[parameters('dcrResourceId')]"
+                    },
+                    "insightsDcrResourceId": {
+                        "value": "[parameters('insightsDcrResourceId')]"
+                    }  
+                }
+            }
+        ]
+    }
+}

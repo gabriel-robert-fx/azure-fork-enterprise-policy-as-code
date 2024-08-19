@@ -1,0 +1,85 @@
+  {
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+    "nodeName": "/root",
+    "definitionEntry": {
+      "policyId": "/providers/Microsoft.Authorization/policyDefinitions/4f9dc7db-30c1-420c-b61a-e1d640128d26",
+      "displayName": "globalmonitoring-assign-tagging-policy",
+      "nonComplianceMessages": [
+        {
+          "message": "The tag Ops:GlobalMonitoring is required on all resources. Please add the tag to the resource. The allowed values are True, False."
+        }
+      ]
+    },
+    "assignment": {
+      "name": "682d02d05ee14c3bb93dc128",
+      "description": "Adds the specified tag and value when any resource missing this tag is created or updated. Existing resources can be remediated by triggering a remediation task. If the tag exists with a different value it will not be changed. Does not modify tags on resource groups.",
+      "displayName": "globalmonitoring-assign-tagging-policy",
+      "identity": {
+        "*": [
+          null
+        ]
+      }
+    },
+    "children": [
+      {
+        "nodeName": "mySub",
+        "enforcementMode": "Default",
+        "parameters": {
+          "tagName": "Ops:GlobalMonitoring",
+          "tagValue": "True"
+        },
+        "resourceSelectors": [
+          {
+            "name": "ResourceTypes",
+            "selectors": [
+              {
+                "kind": "resourceType",
+                "in": [
+                  "Microsoft.Web/sites",
+                  "Microsoft.Web/serverfarms",
+                  "Microsoft.Storage/storageAccounts/tableServices",
+                  "Microsoft.Storage/storageAccounts/queueServices",
+                  "Microsoft.Storage/storageAccounts/fileServices",
+                  "Microsoft.Storage/storageAccounts/blobServices",
+                  "Microsoft.Storage/storageAccounts",
+                  "Microsoft.Storage/storageAccounts",
+                  "Microsoft.ServiceBus/Namespaces",
+                  "Microsoft.RecoveryServices/vaults",
+                  "Microsoft.OperationalInsights/workspaces",
+                  "Microsoft.Network/virtualNetworks",
+                  "Microsoft.Network/virtualNetworkGateways",
+                  "Microsoft.Network/routeTables",
+                  "Microsoft.Network/publicIPAddresses",
+                  "Microsoft.Network/networkSecurityGroups",
+                  "Microsoft.Network/loadBalancers",
+                  "Microsoft.Network/frontdoors",
+                  "Microsoft.Network/connections",
+                  "Microsoft.Network/bastionHosts",
+                  "Microsoft.Network/azurefirewalls",
+                  "Microsoft.Network/applicationGateways",
+                  "Microsoft.Logic/workflows",
+                  "Microsoft.Kusto/clusters",
+                  "Microsoft.KeyVault/vaults",
+                  "Microsoft.Insights/dataCollectionRules",
+                  "Microsoft.insight/components",
+                  "Microsoft.EventHub/namespaces",
+                  "Microsoft.EventHub/clusters",
+                  "Microsoft.EventGrid/systemTopics",
+                  "Microsoft.Dashboards/grafana",
+                  "Microsoft.ContainerRegistry/registries",
+//                  "Microsoft.Compute/virtualMachines",
+                  "Microsoft.Automation/automationAccounts",
+                  "Microsoft.ApiManagement/service"
+                ]
+              }
+            ]
+          }
+        ],
+        "scope": {
+          "test-fx-my-sub": [
+            "/subscriptions/d74e6e64-8eb6-422d-a3a5-22d05df50c75"
+          ]
+        }
+      }
+    ]
+  }

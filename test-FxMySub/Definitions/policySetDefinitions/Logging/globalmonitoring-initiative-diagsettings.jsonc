@@ -1,0 +1,383 @@
+{
+    "name": "globalmonitoring-initiative-diagsettings", // copied from the CAE monitoring-dine-diagnostic-settings-log-analytics.jsonc initiative with required changes 
+    "properties": {
+        "displayName": "globalmonitoring-initiative-diagsettings",
+        "description": "This initiative contains the policies required for the global monitoring project to send logs and or metrics to Log Analytics workspace",
+        "metadata": {
+            "category": "Monitoring"
+        },
+        "parameters": {
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                },
+                "allowedValues": [
+                    "DeployIfNotExists",
+                    "Disabled"
+                ],
+                "defaultValue": "DeployIfNotExists"
+            },
+            "logAnalytics": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Log Analytics workspace",
+                    "description": "Select the Log Analytics workspace from dropdown list",
+                    "strongType": "omsWorkspace",
+                    "assignPermissions": true
+                }
+            }
+        },
+        "policyDefinitions": [
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-ApiManagement-service",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-ApiManagement-service",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Automation-automationaccounts",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Automation-automationaccounts",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-ContainerRegistry-registries",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-ContainerRegistry-registries",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-documentdb-databaseaccounts",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-documentdb-databaseaccounts",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-EventGrid-systemTopics",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-EventGrid-systemTopics",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-EventHub-namespaces",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-EventHub-namespaces",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Grafana",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Grafana",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Insights-components",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Insights-components",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Insights-dataCollectionRules",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Insights-dataCollectionRules",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-KeyVault-vaults",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-KeyVault-vaults",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Kusto-Clusters",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Kusto-Clusters",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Logic-workflows",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Logic-workflows",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Network-applicationGateways",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Network-applicationGateways",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Network-azureFirewalls",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Network-azureFirewalls",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Network-bastionHosts",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Network-bastionHosts",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Network-frontdoors",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Network-frontdoors",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Network-loadBalancers",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Network-loadBalancers",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Network-publicIPAddresses",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Network-publicIPAddresses",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Network-virtualNetworks",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Network-virtualNetworks",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-NetworkSecurityGroups",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-NetworkSecurityGroups",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-NIC",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-NIC",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-OperationalInsights-workspaces",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-OperationalInsights-workspaces",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-RecoveryServiceVault",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-RecoveryServiceVault",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-ServiceBus-Namespaces",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-ServiceBus-Namespaces",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-SQL",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-SQL",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-StorageAccountsAll",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-StorageAccountsAll",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Web-serverfarms",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Web-serverfarms",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Web-Sites-functionapp",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Web-Sites-functionapp",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-DiagSettings-Web-sites",
+                "policyDefinitionName": "globalmonitoring-DiagSettings-Web-sites",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "logAnalytics": {
+                        "value": "[parameters('logAnalytics')]"
+                    }
+                }
+            },
+        ]
+    }
+}

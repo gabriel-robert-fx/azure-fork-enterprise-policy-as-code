@@ -1,0 +1,45 @@
+[
+  {
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+    "name": "globalmonitoring-tagging-audit-resources",
+    "properties": {
+      "description": "Enforces existence of a tag. Does not apply to resource groups.",
+      "metadata": {
+        "category": "Monitoring",
+        "version": "1.0.1"
+      },
+      "displayName": "globalmonitoring-tagging-audit-resources",
+      "policyRule": {
+        "if": {
+          "field": "[concat(\u0027tags[\u0027, parameters(\u0027tagName\u0027), \u0027]\u0027)]",
+          "exists": "false"
+        },
+        "then": {
+          "effect": "[parameters(\u0027effect\u0027)]"
+        }
+      },
+      "parameters": {
+        "effect": {
+          "metadata": {
+            "description": "Effect of the policy",
+            "displayName": "Effect"
+          },
+          "type": "string",
+          "defaultValue": "Audit",
+          "allowedValues": [
+            "Audit",
+            "Deny"
+          ]
+        },
+        "tagName": {
+          "metadata": {
+            "description": "Name of the tag, such as \u0027environment\u0027",
+            "displayName": "Tag Name"
+          },
+          "type": "String"
+        }
+      },
+      "mode": "Indexed"
+    }
+  }
+]

@@ -1,0 +1,214 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-set-definition-schema.json",
+    "name": "globalmonitoring-initiative-ama-windows",
+    "properties": {
+        "displayName": "globalmonitoring-initiative-ama-windows",
+        "policyType": "Custom",
+        "description": "Monitor your Windows virtual machines and virtual machine scale sets by deploying the Azure Monitor Agent extension with user-assigned managed identity authentication and associating with specified Data Collection Rule. Azure Monitor Agent Deployment will occur on machines with supported OS images (or machines matching the provided list of images) in supported regions.",
+        "metadata": {
+            "version": "2.3.0",
+            "category": "Monitoring"
+        },
+        "parameters": {
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy."
+                },
+                "allowedValues": [
+                    "DeployIfNotExists",
+                    "Disabled"
+                ],
+                "defaultValue": "DeployIfNotExists"
+            },
+            "scopeToSupportedImages": {
+                "type": "Boolean",
+                "metadata": {
+                    "displayName": "Scope Policy to Azure Monitor Agent-Supported Operating Systems",
+                    "description": "If set to true, the policy will apply only to machines with supported operating systems. Otherwise, the policy will apply to all machines in the assignment scope. For supported operating systems, see https://aka.ms/AMAOverview."
+                },
+                "allowedValues": [
+                    true,
+                    false
+                ],
+                "defaultValue": true
+            },
+            "listOfWindowsImageIdToInclude": {
+                "type": "Array",
+                "metadata": {
+                    "displayName": "Additional Virtual Machine Images",
+                    "description": "List of virtual machine images that have supported Windows OS to add to scope. Example values: '/subscriptions/<subscriptionId>/resourceGroups/YourResourceGroup/providers/Microsoft.Compute/images/ContosoStdImage'"
+                },
+                "defaultValue": []
+            },
+            "dcrResourceId": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Data Collection Rule Resource Id",
+                    "description": "Resource Id of the Data Collection Rule that the virtual machines in scope should point to.",
+                    "portalReview": "true"
+                }
+            },
+            "insightsDcrResourceId": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Data Collection Rule Resource Id",
+                    "description": "Resource Id of the Data Collection Rule that the virtual machines in scope should point to.",
+                    "portalReview": "true"
+                }
+            },
+            "bringYourOwnUserAssignedManagedIdentity": {
+                "type": "Boolean",
+                "metadata": {
+                    "displayName": "Bring Your Own User-Assigned Managed Identity",
+                    "description": "If set to true, Azure Monitor Agent will use the user-assigned managed identity specified via the 'User-Assigned Managed Identity ...' parameters for authentication. Otherwise, Azure Monitor Agent will use the user-assigned managed identity /subscriptions/<subscription-id>/resourceGroups/built-in-identity-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/built-in-identity-<location> for authentication."
+                },
+                "allowedValues": [
+                    false,
+                    true
+                ]
+            },
+            "userAssignedManagedIdentityName": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "User-Assigned Managed Identity Name",
+                    "description": "The name of the user-assigned managed identity which Azure Monitor Agent will use for authentication when 'Bring Your Own User-Assigned Managed Identity' is set to true."
+                },
+                "defaultValue": ""
+            },
+            "userAssignedManagedIdentityResourceGroup": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "User-Assigned Managed Identity Resource Group",
+                    "description": "The resource group of the user-assigned managed identity which Azure Monitor Agent will use for authentication when 'Bring Your Own User-Assigned Managed Identity' is set to true."
+                },
+                "defaultValue": ""
+            },
+            "builtInIdentityResourceGroupLocation": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Built-In-Identity-RG Location",
+                    "description": "The location of the resource group 'Built-In-Identity-RG' created by the initiative. This parameter is only used when 'Bring Your Own User-Assigned Managed Identity' parameter is false."
+                },
+                "defaultValue": "eastus"
+            }
+        },
+        "policyDefinitions": [
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-addUserAssignedManagedIdentityVM",
+                "policyDefinitionName": "globalmonitoring-addUserAssignedManagedIdentityVM",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "bringYourOwnUserAssignedManagedIdentity": {
+                        "value": "[parameters('bringYourOwnUserAssignedManagedIdentity')]"
+                    },
+                    "userAssignedIdentityName": {
+                        "value": "[parameters('userAssignedManagedIdentityName')]"
+                    },
+                    "identityResourceGroup": {
+                        "value": "[parameters('userAssignedManagedIdentityResourceGroup')]"
+                    },
+                    "builtInIdentityResourceGroupLocation": {
+                        "value": "[parameters('builtInIdentityResourceGroupLocation')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-addUserAssignedManagedIdentityVMSS",
+                "policyDefinitionName": "globalmonitoring-addUserAssignedManagedIdentityVMSS",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "bringYourOwnUserAssignedManagedIdentity": {
+                        "value": "[parameters('bringYourOwnUserAssignedManagedIdentity')]"
+                    },
+                    "userAssignedIdentityName": {
+                        "value": "[parameters('userAssignedManagedIdentityName')]"
+                    },
+                    "identityResourceGroup": {
+                        "value": "[parameters('userAssignedManagedIdentityResourceGroup')]"
+                    },
+                    "builtInIdentityResourceGroupLocation": {
+                        "value": "[parameters('builtInIdentityResourceGroupLocation')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-deployAMAagentWindowsVMWithUAI",
+                "policyDefinitionName": "globalmonitoring-deployAMAagentWindowsVMWithUAI",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "bringYourOwnUserAssignedManagedIdentity": {
+                        "value": "[parameters('bringYourOwnUserAssignedManagedIdentity')]"
+                    },
+                    "userAssignedManagedIdentityName": {
+                        "value": "[parameters('userAssignedManagedIdentityName')]"
+                    },
+                    "userAssignedManagedIdentityResourceGroup": {
+                        "value": "[parameters('userAssignedManagedIdentityResourceGroup')]"
+                    },
+                    "scopeToSupportedImages": {
+                        "value": "[parameters('scopeToSupportedImages')]"
+                    },
+                    "listOfWindowsImageIdToInclude": {
+                        "value": "[parameters('listOfWindowsImageIdToInclude')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-deployAMAagentWindowsVMSSWithUAI",
+                "policyDefinitionName": "globalmonitoring-deployAMAagentWindowsVMSSWithUAI",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "bringYourOwnUserAssignedManagedIdentity": {
+                        "value": "[parameters('bringYourOwnUserAssignedManagedIdentity')]"
+                    },
+                    "userAssignedManagedIdentityName": {
+                        "value": "[parameters('userAssignedManagedIdentityName')]"
+                    },
+                    "userAssignedManagedIdentityResourceGroup": {
+                        "value": "[parameters('userAssignedManagedIdentityResourceGroup')]"
+                    },
+                    "scopeToSupportedImages": {
+                        "value": "[parameters('scopeToSupportedImages')]"
+                    },
+                    "listOfWindowsImageIdToInclude": {
+                        "value": "[parameters('listOfWindowsImageIdToInclude')]"
+                    }
+                }
+            },
+            {
+                "policyDefinitionReferenceId": "globalmonitoring-associateDataCollectionRuleWindowsWithUAI",
+                "policyDefinitionName": "globalmonitoring-associateDataCollectionRuleWindowsWithUAI",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effect')]"
+                    },
+                    "scopeToSupportedImages": {
+                        "value": "[parameters('scopeToSupportedImages')]"
+                    },
+                    "listOfWindowsImageIdToInclude": {
+                        "value": "[parameters('listOfWindowsImageIdToInclude')]"
+                    },
+                    "dcrResourceId": {
+                        "value": "[parameters('dcrResourceId')]"
+                    },
+                    "insightsDcrResourceId": {
+                        "value": "[parameters('insightsDcrResourceId')]"
+                    },
+                    "resourceType": {
+                        "value": "Microsoft.Insights/dataCollectionRules"
+                    }
+                }
+            }
+        ]
+    }
+}

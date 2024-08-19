@@ -1,0 +1,152 @@
+[
+  {
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+    "name": "globalmonitoring-AlertM-EH-Namespace_Outgoing_Messages",
+    "properties": {
+      "displayName": "Alert Microsoft.EventHub/namespaces - Event Hub Namespace Outgoing Messages",
+      "description": "Create Event Hub Namespace Outgoing Messages alerts for  resources",
+      "metadata": {
+        "category": "Alerts",
+        "version": "1.0.0",
+        "alertType": "Microsoft.Insights/metricAlerts",
+        "targetResourceType": "Microsoft.EventHub/namespaces",
+        "ruleName": "Event Hub Namespace Outgoing Messages"
+      },
+      "parameters": {
+        "effect": {
+          "metadata": {
+            "description": "Enable or disable the execution of the policy",
+            "displayName": "Effect"
+          },
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "DeployIfNotExists",
+            "Audit",
+            "Disabled"
+          ]
+        },
+        "actionGroupId": {
+          "metadata": {
+            "description": "The action group id to use when the alert is triggered",
+            "displayName": "Action Group Id"
+          },
+          "type": "String"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "equals": "Microsoft.EventHub/namespaces",
+              "field": "type"
+            },
+            {
+              "equals": "True",
+              "field": "tags[\u0027Ops:GlobalMonitoring\u0027]"
+            }
+          ]
+        },
+        "then": {
+          "effect": "[parameters(\u0027effect\u0027)]",
+          "details": {
+            "type": "Microsoft.Insights/metricAlerts",
+            "existenceScope": "ResourceGroup",
+            "name": "[concat(\u0027ar-\u0027, field(\u0027name\u0027), \u0027-Event Hub Namespace Outgoing Messages\u0027)]",
+            "evaluationDelay": "AfterProvisioningSuccess",
+            "roleDefinitionIds": [
+              "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            ],
+            "deploymentScope": "ResourceGroup",
+            "deployment": {
+              "properties": {
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "parameters": {
+                    "resourceId": {
+                      "type": "string"
+                    },
+                    "resourceName": {
+                      "type": "string"
+                    },
+                    "actionGroupId": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "type": "Microsoft.Insights/metricAlerts",
+                      "apiVersion": "2018-03-01",
+                      "name": "[concat(\u0027ar-\u0027, parameters(\u0027resourceName\u0027), \u0027-Event Hub Namespace Outgoing Messages\u0027)]",
+                      "location": "global",
+                      "tags": {
+                        "Monitoring Objective": "Capacity and Performance",
+                        "related_package": "Alerts-Ops:GlobalMonitoring-True"
+                      },
+                      "properties": {
+                        "severity": 3,
+                        "enabled": true,
+                        "evaluationFrequency": "PT1H",
+                        "windowSize": "PT6H",
+                        "criteria": {
+                          "allOf": [
+                            {
+                              "threshold": 1,
+                              "name": "Metric1",
+                              "metricNamespace": "Microsoft.EventHub/namespaces",
+                              "metricName": "OutgoingMessages",
+                              "dimensions": [
+                                {
+                                  "name": "EntityName",
+                                  "operator": "Include",
+                                  "values": [
+                                    "*"
+                                  ]
+                                }
+                              ],
+                              "operator": "LessThan",
+                              "timeAggregation": "Total",
+                              "skipMetricValidation": false,
+                              "criterionType": "StaticThresholdCriterion"
+                            }
+                          ],
+                          "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                        },
+                        "autoMitigate": true,
+                        "targetResourceType": "Microsoft.EventHub/namespaces",
+                        "// targetResourceRegion": "canadacentral",
+                        "scopes": [
+                          "[parameters(\u0027resourceId\u0027)]"
+                        ],
+                        "actions": [
+                          {
+                            "actionGroupId": "[parameters(\u0027actionGroupId\u0027)]"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "mode": "Incremental",
+                "parameters": {
+                  "actionGroupId": {
+                    "value": "[parameters(\u0027actionGroupId\u0027)]"
+                  },
+                  "resourceName": {
+                    "value": "[field(\u0027name\u0027)]"
+                  },
+                  "resourceId": {
+                    "value": "[field(\u0027id\u0027)]"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "mode": "Indexed"
+    }
+  }
+]

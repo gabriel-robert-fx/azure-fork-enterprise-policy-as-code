@@ -1,0 +1,837 @@
+{
+    "name": "globalmonitoring-initiative-alerts-metrics", // copied from the CAE monitoring-dine-diagnostic-settings-log-analytics.jsonc initiative with required changes 
+    "properties": {
+        "displayName": "globalmonitoring-initiative-alerts-metrics",
+        "description": "This initiative contains the policies required for the global monitoring project to deploy Alerts (Metrics based)",
+        "metadata": {
+            "category": "Monitoring"
+        },
+        "parameters": {
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                },
+                "allowedValues": [
+                    "DeployIfNotExists",
+                    "Disabled"
+                ],
+                "defaultValue": "DeployIfNotExists"
+            },
+            "actionGroupId": {
+                "metadata": {
+                    "description": "The action group id to use when the alert is triggered",
+                    "displayName": "Action Group Id"
+                },
+                "type": "String"
+            }
+        },
+        "policyDefinitions": [
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-Availability",
+    "policyDefinitionName": "globalmonitoring-AlertM-Availability",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-Data_Explorer_CPU",
+    "policyDefinitionName": "globalmonitoring-AlertM-Data_Explorer_CPU",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-Data_Explorer_Failed_Ingestions",
+    "policyDefinitionName": "globalmonitoring-AlertM-Data_Explorer_Failed_Ingestions",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-Data_Explorer_Ingestion_Latency",
+    "policyDefinitionName": "globalmonitoring-AlertM-Data_Explorer_Ingestion_Latency",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-Data_Explorer_Ingestion_Utilization",
+    "policyDefinitionName": "globalmonitoring-AlertM-Data_Explorer_Ingestion_Utilization",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-Data_Explorer_Keep_Alive",
+    "policyDefinitionName": "globalmonitoring-AlertM-Data_Explorer_Keep_Alive",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Cluster_CPU_Utilization",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Cluster_CPU_Utilization",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_Capture_Backlog",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_Capture_Backlog",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_Incoming_Bytes",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_Incoming_Bytes",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_Incoming_Messages",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_Incoming_Messages",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_Outgoing_Messages",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_Outgoing_Messages",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_Quota_Exceeded_Errors",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_Quota_Exceeded_Errors",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_Server_Errors",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_Server_Errors",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_Throttled_Requests",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_Throttled_Requests",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-EH-Namespace_User_Errors",
+    "policyDefinitionName": "globalmonitoring-AlertM-EH-Namespace_User_Errors",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-Blob_End-to-End_Latency",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-Blob_End-to-End_Latency",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-Blob_Success_Server_Latency",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-Blob_Success_Server_Latency",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-File_Share_Availability",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-File_Share_Availability",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-File_Share_Throttling",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-File_Share_Throttling",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-File_Share_Transactions_Failed",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-File_Share_Transactions_Failed",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-Queue_Storage_Availability",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-Queue_Storage_Availability",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-Queue_Storage_Message_Count",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-Queue_Storage_Message_Count",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-Table_Storage_Availability",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA-Table_Storage_Availability",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Availability",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Availability",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Available_Memory_Bytes_Linux",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Available_Memory_Bytes_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Available_Memory_Bytes",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Available_Memory_Bytes",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Cached_Bandwidth_Consumed",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Cached_Bandwidth_Consumed",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Cached_IOPS_Consumed_Pct",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Cached_IOPS_Consumed_Pct",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-CPU_Credits_Consumed_Linux",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-CPU_Credits_Consumed_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-CPU_Credits_Consumed",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-CPU_Credits_Consumed",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-CPU_Credits_Remaining_Linux",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-CPU_Credits_Remaining_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-CPU_Credits_Remaining",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-CPU_Credits_Remaining",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_Bandwidth_Consumed_Pct",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_Bandwidth_Consumed_Pct",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_IOPS_Consumed_Pct_Linux",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_IOPS_Consumed_Pct_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_IOPS_Consumed_Pct",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_IOPS_Consumed_Pct",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_Max_Burst_IOPS",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_Max_Burst_IOPS",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_Queue_Depth",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_Queue_Depth",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_Read_Operations_per_Sec",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_Read_Operations_per_Sec",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_Write_Bytes_per_Sec",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_Write_Bytes_per_Sec",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Data_Disk_Write_Operations_per_Sec",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Data_Disk_Write_Operations_per_Sec",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Disk_Read_Bytes",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Disk_Read_Bytes",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Disk_Write_Bytes",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Disk_Write_Bytes",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Inbound_Flows",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Inbound_Flows",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Network_In_Total_Linux",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Network_In_Total_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Network_In_Total",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Network_In_Total",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Network_Out_Total_Linux",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Network_Out_Total_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Network_Out_Total",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Network_Out_Total",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-OS_Disk_Bandwidth_Consumed_Pct",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-OS_Disk_Bandwidth_Consumed_Pct",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-OS_Disk_IOPS_Consumed_Pct",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-OS_Disk_IOPS_Consumed_Pct",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-OS_Disk_Max_Burst_IOPS",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-OS_Disk_Max_Burst_IOPS",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-OS_Disk_Queue_Depth",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-OS_Disk_Queue_Depth",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-OS_Disk_Write_Bytes_per_Sec",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-OS_Disk_Write_Bytes_per_Sec",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-OS_Disk_Write_Operations_per_Sec",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-OS_Disk_Write_Operations_per_Sec",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Outbound_Flows",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Outbound_Flows",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Percentage_CPU_Linux",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Percentage_CPU_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Percentage_CPU",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Percentage_CPU",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Uncached_Bandwidth_Consumed_Pct",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Uncached_Bandwidth_Consumed_Pct",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VM-Uncached_IOPS_Consumed_Pct",
+    "policyDefinitionName": "globalmonitoring-AlertM-VM-Uncached_IOPS_Consumed_Pct",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VNG_Tunnel_Average_Bandwidth",
+    "policyDefinitionName": "globalmonitoring-AlertM-VNG_Tunnel_Average_Bandwidth",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VNG_Tunnel_Out_Bytes",
+    "policyDefinitionName": "globalmonitoring-AlertM-VNG_Tunnel_Out_Bytes",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VNG_Tunnel_Out_Pkt_Drop_Count",
+    "policyDefinitionName": "globalmonitoring-AlertM-VNG_Tunnel_Out_Pkt_Drop_Count",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VNG_Tunnel_Out_Pkt_Drop_TS_Mismatch",
+    "policyDefinitionName": "globalmonitoring-AlertM-VNG_Tunnel_Out_Pkt_Drop_TS_Mismatch",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VNG_Tunnel_In_Bytes",
+    "policyDefinitionName": "globalmonitoring-AlertM-VNG_Tunnel_In_Bytes",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VNG_Tunnel_In_Pkt_Drop_Count",
+    "policyDefinitionName": "globalmonitoring-AlertM-VNG_Tunnel_In_Pkt_Drop_Count",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-VNG_Tunnel_In_Pkt_Drop_TS_Mismatch",
+    "policyDefinitionName": "globalmonitoring-AlertM-VNG_Tunnel_In_Pkt_Drop_TS_Mismatch",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-Alerts-Metrics-SA_Blob_Availability",
+    "policyDefinitionName": "globalmonitoring-Alerts-Metrics-SA_Blob_Availability",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
+    "policyDefinitionReferenceId": "globalmonitoring-Alerts-Metrics-VM-OS_Disk_IOPS_Consumed_Linux",
+    "policyDefinitionName": "globalmonitoring-Alerts-Metrics-VM-OS_Disk_IOPS_Consumed_Linux",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+        ]
+    }
+}

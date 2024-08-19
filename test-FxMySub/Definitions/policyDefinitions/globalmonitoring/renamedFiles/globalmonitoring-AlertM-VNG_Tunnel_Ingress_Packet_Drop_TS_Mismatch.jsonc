@@ -1,0 +1,147 @@
+[
+  {
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+    "name": "globalmonitoring-AlertM-VNG_Tunnel_In_Pkt_Drop_TS_Mismatch",
+    "properties": {
+      "displayName": "Alert Microsoft.Network/virtualNetworkGateways - Virtual Network Gateway Tunnel Ingress Packet Drop TS Mismatch",
+      "description": "Create Virtual Network Gateway Tunnel Ingress Packet Drop TS Mismatch alerts for  resources",
+      "metadata": {
+        "category": "Alerts",
+        "version": "1.0.0",
+        "alertType": "Microsoft.Insights/metricAlerts",
+        "targetResourceType": "Microsoft.Network/virtualNetworkGateways",
+        "ruleName": "Virtual Network Gateway Tunnel Ingress Packet Drop TS Mismatch"
+      },
+      "parameters": {
+        "effect": {
+          "metadata": {
+            "description": "Enable or disable the execution of the policy",
+            "displayName": "Effect"
+          },
+          "type": "String",
+          "defaultValue": "AuditIfNotExists",
+          "allowedValues": [
+            "AuditIfNotExists",
+            "DeployIfNotExists",
+            "Audit",
+            "Disabled"
+          ]
+        },
+        "actionGroupId": {
+          "metadata": {
+            "description": "The action group id to use when the alert is triggered",
+            "displayName": "Action Group Id"
+          },
+          "type": "String"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "equals": "Microsoft.Network/virtualNetworkGateways",
+              "field": "type"
+            },
+            {
+              "equals": "True",
+              "field": "tags[\u0027Ops:GlobalMonitoring\u0027]"
+            }
+          ]
+        },
+        "then": {
+          "effect": "[parameters(\u0027effect\u0027)]",
+          "details": {
+            "type": "Microsoft.Insights/metricAlerts",
+            "existenceScope": "ResourceGroup",
+            "name": "[concat(\u0027ar-\u0027, field(\u0027name\u0027), \u0027-Virtual Network Gateway Tunnel Ingress Packet Drop TS Mismatch\u0027)]",
+            "evaluationDelay": "AfterProvisioningSuccess",
+            "roleDefinitionIds": [
+              "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            ],
+            "deploymentScope": "ResourceGroup",
+            "deployment": {
+              "properties": {
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "parameters": {
+                    "resourceId": {
+                      "type": "string"
+                    },
+                    "resourceName": {
+                      "type": "string"
+                    },
+                    "actionGroupId": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "type": "Microsoft.Insights/metricAlerts",
+                      "apiVersion": "2018-03-01",
+                      "name": "[concat(\u0027ar-\u0027, parameters(\u0027resourceName\u0027), \u0027-Virtual Network Gateway Tunnel Ingress Packet Drop TS Mismatch\u0027)]",
+                      "location": "global",
+                      "tags": {
+                        "Monitoring Objective": "Capacity and Performance",
+                        "related_package": "Alerts-Ops:GlobalMonitoring-True"
+                      },
+                      "properties": {
+                        "severity": 3,
+                        "enabled": true,
+                        "evaluationFrequency": "PT5M",
+                        "windowSize": "PT5M",
+                        "criteria": {
+                          "allOf": [
+                            {
+                              "alertSensitivity": "Medium",
+                              "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                              },
+                              "name": "Metric1",
+                              "metricNamespace": "Microsoft.Network/virtualNetworkGateways",
+                              "metricName": "TunnelIngressPacketDropTSMismatch",
+                              "operator": "GreaterThan",
+                              "timeAggregation": "Total",
+                              "skipMetricValidation": false,
+                              "criterionType": "DynamicThresholdCriterion"
+                            }
+                          ],
+                          "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                        },
+                        "autoMitigate": true,
+                        "targetResourceType": "Microsoft.Network/virtualNetworkGateways",
+                        "// targetResourceRegion": "canadacentral",
+                        "scopes": [
+                          "[parameters(\u0027resourceId\u0027)]"
+                        ],
+                        "actions": [
+                          {
+                            "actionGroupId": "[parameters(\u0027actionGroupId\u0027)]"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "mode": "Incremental",
+                "parameters": {
+                  "actionGroupId": {
+                    "value": "[parameters(\u0027actionGroupId\u0027)]"
+                  },
+                  "resourceName": {
+                    "value": "[field(\u0027name\u0027)]"
+                  },
+                  "resourceId": {
+                    "value": "[field(\u0027id\u0027)]"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "mode": "Indexed"
+    }
+  }
+]

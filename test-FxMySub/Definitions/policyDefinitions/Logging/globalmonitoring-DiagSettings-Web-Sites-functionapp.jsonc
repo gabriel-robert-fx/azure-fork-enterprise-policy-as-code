@@ -1,0 +1,276 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+    "name": "globalmonitoring-DiagSettings-Web-sites-functionapp",
+    "properties": {
+        "displayName": "globalmonitoring-DiagSettings-Web-sites-functionapp",
+        "policyType": "Custom",
+        "mode": "Indexed",
+        "description": "Resource logs should be enabled to track activities and events that take place on your resources and give you visibility and insights into any changes that occur. This policy deploys a diagnostic setting using a category group to route logs to a Log Analytics workspace for Function App (microsoft.web/sites).",
+        "metadata": {
+            "version": "1.0.0",
+            "category": "Monitoring",
+            "source": "Built-In-e9c22e0d-1f03-44da-a9d5-a9754ea53dc4" // To be replaced with gitHub site reference
+        },
+        "parameters": {
+            "effect": {
+                "type": "string",
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                },
+                "allowedValues": [
+                    "DeployIfNotExists",
+                    "AuditIfNotExists",
+                    "Disabled"
+                ],
+                "defaultValue": "DeployIfNotExists"
+            },
+            "diagnosticSettingName": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Diagnostic Setting Name",
+                    "description": "Diagnostic Setting Name"
+                },
+                "defaultValue": "setByPolicy-LogAnalytics"
+            },
+            "resourceLocationList": {
+                "type": "Array",
+                "metadata": {
+                    "displayName": "Resource Location List",
+                    "description": "Resource Location List to send logs to nearby Log Analytics. A single entry \"*\" selects all locations (default)."
+                },
+                "defaultValue": [
+                    "*"
+                ]
+            },
+            "monitoringTagName": {
+                "type": "String",
+                "defaultValue": "Ops:GlobalMonitoring",
+                "metadata": {
+                    "displayName": "Tag name for GlobalMonitoring",
+                    "description": "Global Monitoring: resource to be monitored"
+                }
+            },
+            "monitoringTagValue": {
+                "type": "String",
+                "defaultValue": "True",
+                "metadata": {
+                    "displayName": "Tag value for GlobalMonitoring Tag",
+                    "description": "Global Monitoring: resource to be monitored"
+                }
+            },
+            "logsRequired": {
+                "type": "array",
+                "metadata": {
+                    "displayName": "Logs required to be monitored",
+                    "description": "Logs required to be monitored"
+                },
+                "defaultValue": [
+                    "FunctionAppLogs"
+                ]
+            },
+            "logsEnabled": {
+                "type": "String",
+                "defaultValue": "True",
+                "allowedValues": [
+                    "True",
+                    "False"
+                ],
+                "metadata": {
+                    "displayName": "Enable Logs",
+                    "description": "Whether to enable Log stream to the Log Analytics workspace - True or False"
+                }
+            },
+            "metricsEnabled": {
+                "type": "String",
+                "defaultValue": "True",
+                "allowedValues": [
+                    "True",
+                    "False"
+                ],
+                "metadata": {
+                    "displayName": "Enable metrics",
+                    "description": "Whether to enable metrics stream to the Log Analytics workspace - True or False"
+                }
+            },
+            "logAnalytics": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Log Analytics Workspace",
+                    "description": "Log Analytics Workspace",
+                    "strongType": "omsWorkspace",
+                    "assignPermissions": true
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Web/sites"
+                    },
+                    {
+                        "field": "kind",
+                        "contains": "functionapp"
+                    },
+                    {
+                        "field": "tags",
+                        "containsKey": "[parameters('monitoringTagName')]"
+                    },
+                    {
+                        "field": "[concat( 'tags[', parameters('monitoringTagName'), ']' )]",
+                        "equals": "[parameters('monitoringTagValue')]"
+                    },
+                    {
+                        "anyOf": [
+                            {
+                                "value": "[first(parameters('resourceLocationList'))]",
+                                "equals": "*"
+                            },
+                            {
+                                "field": "location",
+                                "in": "[parameters('resourceLocationList')]"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effect')]",
+                "details": {
+                    "type": "Microsoft.Insights/diagnosticSettings",
+                    "existenceCondition": {
+                        "allOf": [
+                            {
+                                "count": {
+                                    "field": "Microsoft.Insights/diagnosticSettings/logs[*]",
+                                    "where": {
+                                        "allOf": [
+                                            {
+                                                "field": "Microsoft.Insights/diagnosticSettings/logs[*].enabled",
+                                                "equals": "[parameters('logsEnabled')]"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "equals": "[length(parameters('logsRequired'))]"
+                            },
+                            {
+                                "count": {
+                                    "field": "Microsoft.Insights/diagnosticSettings/logs[*]",
+                                    "where": {
+                                        "allOf": [
+                                            {
+                                                "field": "Microsoft.Insights/diagnosticSettings/logs[*].enabled",
+                                                "equals": "[parameters('logsEnabled')]"
+                                            },
+                                            {
+                                                "field": "Microsoft.Insights/diagnosticSettings/logs[*].category",
+                                                "in": "[parameters('logsRequired')]"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "equals": "[length(parameters('logsRequired'))]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
+                "equals": "[parameters('metricsEnabled')]"
+                            },
+                            {
+                                "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                                "equals": "[parameters('logAnalytics')]"
+                            }
+                        ]
+                    },
+                    "roleDefinitionIds": [
+                        "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+                    ],
+                    "deployment": {
+                        "properties": {
+                            "mode": "incremental",
+                            "template": {
+                                "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+                                "contentVersion": "1.0.0.0",
+                                "parameters": {
+                                    "diagnosticSettingName": {
+                                        "type": "string"
+                                    },
+                                    "logAnalytics": {
+                                        "type": "string"
+                                    },
+                                    "logsRequired": {
+                                        "type": "array"
+                                      },
+                                      "logsEnabled": {
+                                        "type": "string"
+                                      },
+                                      "metricsEnabled": {
+                                        "type": "string"
+                                      },                                    
+                                    "resourceName": {
+                                        "type": "string"
+                                    }
+                                },
+                                "variables": {},
+                                "resources": [
+                                    {
+                                        "type": "microsoft.web/sites/providers/diagnosticSettings",
+                                        "apiVersion": "2021-05-01-preview",
+                                        "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('diagnosticSettingName'))]",
+                                        "properties": {
+                                            "workspaceId": "[parameters('logAnalytics')]",
+                                            "copy": [
+                                                {
+                                                  "name": "logs",
+                                                  "count": "[length(parameters('logsRequired'))]",
+                                                  "input": {
+                                                    "category": "[parameters('logsRequired')[copyindex('logs')]]",
+                                                    "enabled": "[parameters('logsEnabled')]"
+                                                  }
+                                                }
+                                            ],
+                                            "metrics": [
+                                                {
+                                                    "category": "AllMetrics",
+                                                    "enabled": "[parameters('metricsEnabled')]"
+                                                }
+                                            ],
+                                        }
+                                    }
+                                ],
+                                "outputs": {
+                                    "policy": {
+                                        "type": "string",
+                                        "value": "[concat('Diagnostic setting ', parameters('diagnosticSettingName'), ' for type Function App (microsoft.web/sites), resourceName ', parameters('resourceName'), ' to Log Analytics ', parameters('logAnalytics'), ' configured')]"
+                                    }
+                                }
+                            },
+                            "parameters": {
+                                "diagnosticSettingName": {
+                                    "value": "[parameters('diagnosticSettingName')]"
+                                },
+                                "logAnalytics": {
+                                    "value": "[parameters('logAnalytics')]"
+                                },
+                                "logsRequired": {
+                                    "value": "[parameters('logsRequired')]"
+                                  },
+                                  "logsEnabled": {
+                                    "value": "[parameters('logsEnabled')]"
+                                  },
+                                  "metricsEnabled": {
+                                    "value": "[parameters('metricsEnabled')]"
+                                  },                                
+                                "resourceName": {
+                                    "value": "[field('name')]"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

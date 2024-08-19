@@ -1,0 +1,59 @@
+[
+  {
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+    "name": "globalmonitoring-tagging-restrict-values",
+    "properties": {
+      "description": "Restrict allowed values for a specific tag. Only works if tag is set.",
+      "metadata": {
+        "category": "Monitoring",
+        "version": "1.1.0"
+      },
+      "displayName": "globalmonitoring-tagging-restrict_values",
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "field": "tags",
+              "containsKey": "[parameters(\u0027tagName\u0027)]"
+            },
+            {
+              "field": "[concat(\u0027tags[\u0027, parameters(\u0027tagName\u0027), \u0027]\u0027)]",
+              "notIn": "[parameters(\u0027allowedValues\u0027)]"
+            }
+          ]
+        },
+        "then": {
+          "effect": "[parameters(\u0027effect\u0027)]"
+        }
+      },
+      "parameters": {
+        "effect": {
+          "metadata": {
+            "description": "Effect of the policy",
+            "displayName": "Effect"
+          },
+          "type": "string",
+          "defaultValue": "Audit",
+          "allowedValues": [
+            "Audit",
+            "Deny"
+          ]
+        },
+        "allowedValues": {
+          "metadata": {
+            "displayName": "Allowed Tag Values"
+          },
+          "type": "Array"
+        },
+        "tagName": {
+          "metadata": {
+            "description": "Name of the tag",
+            "displayName": "Tag Name"
+          },
+          "type": "String"
+        }
+      },
+      "mode": "All"
+    }
+  }
+]
