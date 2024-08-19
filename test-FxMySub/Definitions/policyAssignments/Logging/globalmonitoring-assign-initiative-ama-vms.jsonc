@@ -1,0 +1,33 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+    "nodeName": "rootNode",
+    "definitionEntry": {
+        "initiativeName": "globalmonitoring-initiative-ama-vms"
+    },
+    "assignment": {
+        "name": "globalmonitoring-assign-initiative-ama-vms",
+        "displayName": "globalmonitoring-assign-initiative-ama-vms",
+        "description": ""
+    },
+    "children": [
+        {
+            "nodeName": "mySub",
+            "enforcementMode": "Default",
+            "parameters": {  
+                "linuxDcrResourceId": "/subscriptions/d74e6e64-8eb6-422d-a3a5-22d05df50c75/resourceGroups/rg-dcr-test/providers/Microsoft.Insights/dataCollectionRules/dcr-linux-all",
+                "windowsDcrResourceId": "/subscriptions/d74e6e64-8eb6-422d-a3a5-22d05df50c75/resourceGroups/rg-dcr-test/providers/Microsoft.Insights/dataCollectionRules/dcr-windowa-all",
+                "insightsDcrResourceId": "/subscriptions/d74e6e64-8eb6-422d-a3a5-22d05df50c75/resourceGroups/rg-gabriel-robert-lab-perm-laws/providers/Microsoft.Insights/dataCollectionRules/MSVMI-vminsights-mysub-donotmodify",
+                // "userAssignedManagedIdentityResourceGroup": "rg-gabriel-test-policy-compliance",
+                // "userAssignedManagedIdentityName": "umi-gabriel-test-policies",
+                "restrictBringYourOwnUserAssignedIdentityToSubscription": false,
+                "userAssignedIdentityResourceId": "/subscriptions/d74e6e64-8eb6-422d-a3a5-22d05df50c75/resourceGroups/rg-gabriel-test-policy-compliance/providers/Microsoft.ManagedIdentity/userAssignedIdentities/umi-gabriel-test-policies",
+                "bringYourOwnuserAssignedManagedIdentity": true
+            },
+            "scope": {
+                "test-fx-my-sub": [
+                    "/subscriptions/d74e6e64-8eb6-422d-a3a5-22d05df50c75"
+                ]
+            }
+        }
+    ]
+}

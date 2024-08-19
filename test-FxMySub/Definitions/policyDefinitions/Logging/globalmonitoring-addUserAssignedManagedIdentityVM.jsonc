@@ -1,6 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
     "name": "globalmonitoring-addUserAssignedManagedIdentityVM",
+    // Based one versison 1.1.0-preview of Managed Identiies folder built-in policy
+    // "id": "/providers/Microsoft.Authorization/policyDefinitions/d367bd60-64ca-4364-98ea-276775bddd94",
+    //  "name": "d367bd60-64ca-4364-98ea-276775bddd94"
     "properties": {
         // "displayName": "[Preview]: Assign Built-In User-Assigned Managed Identity to Virtual Machines",
         "displayName": "globalmonitoring-addUserAssignedManagedIdentityVM",

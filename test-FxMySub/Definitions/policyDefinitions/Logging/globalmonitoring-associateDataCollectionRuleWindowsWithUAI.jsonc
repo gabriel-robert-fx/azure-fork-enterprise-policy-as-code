@@ -1,6 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
     "name": "globalmonitoring-associateDataCollectionRuleWindowsWithUAI",
+    // Based on version 4.5.0 of built-in policy
+    // "id": "/providers/Microsoft.Authorization/policyDefinitions/eab1f514-22e3-42e3-9a1f-e1dc9199355c",
+    // "name": "eab1f514-22e3-42e3-9a1f-e1dc9199355c"
     "properties": {
         // "displayName": "Configure Windows Machines to be associated with a Data Collection Rule or a Data Collection Endpoint",
         "displayName": "globalmonitoring-associateDataCollectionRuleWindowsWithUAI",

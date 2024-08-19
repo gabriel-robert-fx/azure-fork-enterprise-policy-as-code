@@ -1,6 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
     "name": "globalmonitoring-associateDataCollectionRuleLinuxWithUAI",
+    // Based on version 6.5.0 of built-in policy
+    // "id": "/providers/Microsoft.Authorization/policyDefinitions/2ea82cdd-f2e8-4500-af75-67a2e084ca74",
+    // "name": "2ea82cdd-f2e8-4500-af75-67a2e084ca74"
     "properties": {
         // "displayName": "Configure Linux Machines to be associated with a Data Collection Rule or a Data Collection Endpoint",
         "displayName": "globalmonitoring-associateDataCollectionRuleLinuxWithUAI",
@@ -485,7 +488,7 @@
                                                     },
                                                     {
                                                         "field": "Microsoft.Compute/imageOffer",
-                                                        "equals": "almalinux"
+                                                        "like": "almalinux"
                                                     },
                                                     {
                                                         "anyOf": [

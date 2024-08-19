@@ -1,6 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
     "name": "globalmonitoring-deployAMAagentLinuxVMWithUAI",
+    // Based on version 3.8 of built-in policy 
+    // "id": "/providers/Microsoft.Authorization/policyDefinitions/ae8a10e6-19d6-44a3-a02d-a2bdfc707742",
+    // "name": "ae8a10e6-19d6-44a3-a02d-a2bdfc707742"
     "properties": {
         // "displayName": "Configure Linux virtual machines to run Azure Monitor Agent with user-assigned managed identity-based authentication",
         "displayName": "globalmonitoring-deployAMAagentLinuxVMWithUAI",
@@ -8,7 +11,7 @@
         "mode": "Indexed",
         "description": "Automate the deployment of Azure Monitor Agent extension on your Linux virtual machines for collecting telemetry data from the guest OS. This policy will install the extension and configure it to use the specified user-assigned managed identity if the OS and region are supported, and skip install otherwise. Learn more: https://aka.ms/AMAOverview.",
         "metadata": {
-            "version": "3.7.0",
+            "version": "3.8.0",
             "category": "Monitoring"
         },
         "parameters": {
@@ -470,7 +473,7 @@
                                     },
                                     {
                                         "field": "Microsoft.Compute/imageOffer",
-                                        "equals": "almalinux"
+                                        "like": "almalinux"
                                     },
                                     {
                                         "anyOf": [

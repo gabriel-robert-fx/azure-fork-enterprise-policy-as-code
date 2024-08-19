@@ -221,6 +221,18 @@
     }
 },
 {
+    "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA2-Blob_End-to-End_Latency",
+    "policyDefinitionName": "globalmonitoring-AlertM-SA2-Blob_End-to-End_Latency",
+    "parameters": {
+        "effect": {
+            "value": "[parameters('effect')]"
+        },
+        "actionGroupId": {
+            "value": "[parameters('actionGroupId')]"
+        }
+    }
+},
+{
     "policyDefinitionReferenceId": "globalmonitoring-AlertM-SA-Blob_Success_Server_Latency",
     "policyDefinitionName": "globalmonitoring-AlertM-SA-Blob_Success_Server_Latency",
     "parameters": {

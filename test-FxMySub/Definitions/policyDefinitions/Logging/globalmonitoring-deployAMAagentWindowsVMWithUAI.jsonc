@@ -1,6 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
     "name": "globalmonitoring-deployAMAagentWindowsVMWithUAI",
+    // Based on version 1.6.0 of built-in policy : 
+    // "id": "/providers/Microsoft.Authorization/policyDefinitions/637125fd-7c39-4b94-bb0a-d331faf333a9",
+    // "name": "637125fd-7c39-4b94-bb0a-d331faf333a9"
     "properties": {
         // "displayName": "Configure Windows virtual machines to run Azure Monitor Agent with user-assigned managed identity-based authentication",
         "displayName": "globalmonitoring-deployAMAagentWindowsVMWithUAI",
@@ -8,7 +11,7 @@
         "mode": "Indexed",
         "description": "Automate the deployment of Azure Monitor Agent extension on your Windows virtual machines for collecting telemetry data from the guest OS. This policy will install the extension and configure it to use the specified user-assigned managed identity if the OS and region are supported, and skip install otherwise. Learn more: https://aka.ms/AMAOverview.",
         "metadata": {
-            "version": "1.5.0",
+            "version": "1.6.0",
             "category": "Monitoring"
         },
         "parameters": {
@@ -127,32 +130,53 @@
                         "field": "location",
                         "in": [
                             "australiacentral",
+                            "australiacentral2",
                             "australiaeast",
                             "australiasoutheast",
                             "brazilsouth",
+                            "brazilsoutheast",
                             "canadacentral",
                             "canadaeast",
                             "centralindia",
                             "centralus",
+                            "centraluseuap",
                             "eastasia",
                             "eastus2euap",
                             "eastus",
                             "eastus2",
                             "francecentral",
+                            "francesouth",
+                            "germanynorth",
                             "germanywestcentral",
+                            "israelcentral",
+                            "italynorth",
                             "japaneast",
                             "japanwest",
+                            "jioindiacentral",
                             "jioindiawest",
                             "koreacentral",
                             "koreasouth",
+                            "malaysiasouth",
+                            "mexicocentral",
                             "northcentralus",
                             "northeurope",
                             "norwayeast",
+                            "norwaywest",
+                            "polandcentral",
+                            "qatarcentral",
                             "southafricanorth",
+                            "southafricawest",
                             "southcentralus",
                             "southeastasia",
                             "southindia",
+                            "spaincentral",
+                            "swedencentral",
+                            "swedensouth",
                             "switzerlandnorth",
+                            "switzerlandwest",
+                            "taiwannorth",
+                            "taiwannorthwest",
+                            "uaecentral",
                             "uaenorth",
                             "uksouth",
                             "ukwest",
@@ -161,6 +185,7 @@
                             "westindia",
                             "westus",
                             "westus2",
+                            "westus3",
                             "chinaeast",
                             "chinaeast2",
                             "chinaeast3",
@@ -172,7 +197,7 @@
                             "usgovvirginia",
                             "usdodeast",
                             "usdodcentral"
-                        ]
+                          ]
                     },
                     {
                         "anyOf": [
